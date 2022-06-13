@@ -50,3 +50,43 @@ body {
     }
   }
 }
+
+.cont {
+  margin: 50px;
+}
+.progress-bar {
+  width: 200px;
+  height: 10px;
+  background-color: #cdcdcd;
+  border-radius: 20px;
+  margin: 0 auto;
+  position: relative;
+  transition: all 100ms ease-in-out;
+  .progress-bar-inner {
+    height: 100%;
+    background-color: #05be30;
+    border-radius: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 100ms ease-in-out;
+  }
+}
+.startBtn {
+  background-color: #05be30;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 20px;
+  transition: all 100ms ease-in-out;
+}
+.pers {
+  text-align: center;
+}

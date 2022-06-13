@@ -1,9 +1,13 @@
 import React from "react";
 import axios from "axios";
 import "./App.scss";
+import DatePicker from "react-datetime";
+import "react-datetime/css/react-datetime.css";
+import Pbar from "./components/pbar";
 
 const App = () => {
   const [data, setData] = React.useState(null);
+  const [data1, setData1] = React.useState(null);
 
   let cancelToken;
   const handleSearchChange = async (e) => {
@@ -30,10 +34,39 @@ const App = () => {
     }
   };
 
+  const callAPI = () => {
+    axios
+      .get("https://ip-address-total-hit.herokuapp.com/uri")
+      .then((res) => {
+        console.log(res);
+        setData1(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const [dates, setDates] = React.useState([]);
+  const changeDate = (e) => {
+    console.log("📌 | changeDate | e", e);
+    setDates([...dates]);
+  };
+
+  const disableCustomDt = (current) => {
+    return !dates.includes(current.format("YYYY-MM-DD"));
+  };
+
   return (
     <React.Fragment>
+      <Pbar />
       <div className="full-body">
+        Data: {data1}
         <h2>Search for Recipes</h2>
+        <DatePicker
+          timeFormat={false}
+          isValidDate={disableCustomDt}
+          onChange={changeDate}
+        />
         <p>Cancel Previous API Call</p>
         <input
           type="text"
@@ -53,6 +86,7 @@ const App = () => {
             ))}
           </div>
         )}
+        <button onClick={callAPI}>Call API</button>
       </div>
     </React.Fragment>
   );
